@@ -1,4 +1,4 @@
-from matplotlib.pyplot import xlim
+
 import Slutprojek1
 
 game = Slutprojek1.Game(5) # skapa ett nytt wordlespel med ord som är 5 långa
