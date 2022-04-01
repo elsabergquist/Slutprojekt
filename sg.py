@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 from SwedishWordle import *
 
 layout = [
-    [sg.Text('Hej och välkomna till vår wordguesser!, Vad är din första gissning?'), sg.InputText(key="gissning1")],
+    [sg.Text('Hej och välkomna till vår wordguesser!, Hur många bokstäver vill du att ordet ska bestå av?'), sg.InputText(key="bokstaver")],
     [sg.Button("gissa", key="gissing")],
     [sg.Text("...", key="info")]]
 
