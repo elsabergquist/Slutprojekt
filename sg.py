@@ -1,9 +1,9 @@
 import PySimpleGUI as sg
 from SwedishWordle import *
 
+
 layout = [
     [sg.Text('Hej och välkomna till vår wordguesser!, Vill du starta ett nytt spel?'), sg.Button("ja, starta nytt spel", key="get_new")],
-    [sg.InputText(key="gissning")],
     [sg.Text("...", key="info")]]
 
 window = sg.Window("Wordguesser", layout)
