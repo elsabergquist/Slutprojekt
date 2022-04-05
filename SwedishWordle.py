@@ -1,8 +1,6 @@
 import json
 import os, sys
 import random
-from sg import *
-
 
 all_swedish_words = None
 
