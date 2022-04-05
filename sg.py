@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 from exampleusage import *
 
+sg.theme('DarkTeal6')
 
 layout = [
     [sg.Text('Hej och välkomna till vår wordguesser!, Spelet går ut på att du ska försöka gissa vilket ord med fem bokstäver som jag tänker på! Vill du starta ett nytt spel?'), sg.Button("ja, starta nytt spel", key="get_new")],
