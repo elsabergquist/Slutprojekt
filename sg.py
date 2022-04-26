@@ -41,9 +41,10 @@ while True:
         game = SwedishWordle.Game(5)
     
     if event == "gissa":
-        guess1 = game.Guess('gissa')
-        message = f'{guess1}'
+        new_guess = game.Guess('gissa')
+        message = f'{new_guess}'
         window["info"].update(message)
+    
     
     # if event == "gissa2":
         #guess2 = game.Guess('gissa')
