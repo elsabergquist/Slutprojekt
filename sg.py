@@ -9,7 +9,7 @@ layout1 = [
     [sg.Text('När du har gissat på ett ord så kan du se vilket eller vilka bokstäver som finns i det riktiga ordet. 0 betyder att bokstaven inte finns i ordet, 1 betyder att bokstaven är rätt men på fel plats, 2 betyder att bokstaven är rätt och på rätt plats')]]
     
 layout2 = [
-    [sg.Input(), sg.Button('gissa', key='gissa')],
+    [sg.Input(key = 'gissning'), sg.Button('gissa', key='gissa')],
     [sg.Text("...", key="info")]]
 
 layout3 = [
@@ -41,7 +41,8 @@ while True:
         game = SwedishWordle.Game(5)
     
     if event == "gissa":
-        new_guess = game.Guess('gissa')
+        guess = values['gissning']#hämta från inputen
+        new_guess = game.Guess(guess)
         message = f'{new_guess}'
         window["info"].update(message)
     
