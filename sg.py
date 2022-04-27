@@ -10,7 +10,8 @@ layout1 = [
     
 layout2 = [
     [sg.Input(key = 'gissning'), sg.Button('gissa', key='gissa')],
-    [sg.Text("...", key="info")]]
+    [sg.Text("...", key = "lista")]
+    ]
 
 layout3 = [
     [sg.Input(), sg.Button('gissa', key='gissa2')],
@@ -26,6 +27,8 @@ layout = [
 window = sg.Window("Wordguesser", layout)
 
 layout = 1
+
+tidigare_gissningar = []
 
 while True:
     event, values = window.read()
@@ -44,7 +47,9 @@ while True:
         guess = values['gissning']#hämta från inputen
         new_guess = game.Guess(guess)
         message = f'{new_guess}'
-        window["info"].update(message)
+        tidigare_gissningar.append(message+'\n')
+        window["lista"].update(tidigare_gissningar)
+        
     
     
     # if event == "gissa2":
