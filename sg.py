@@ -64,15 +64,3 @@ window.close()
     window["ord"].update(tidigare_ord)
 
 
-window.close()
-
-    text1 = ""
-
-    for tuppel in tidigare_gissningar:
-        for s in tuppel:
-            text1+=str(s)+ " "
-        text1 += "\n"
-    return text1
-    
-
-window.close()
