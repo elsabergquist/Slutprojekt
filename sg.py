@@ -50,4 +50,5 @@ while True:
         window["lista"].update(tidigare_gissningar)
         window["ord"].update(tidigare_ord)
 
+
 window.close()
