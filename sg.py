@@ -48,6 +48,7 @@ while True:
         tidigare_gissningar.append(message)
         tidigare_ord.append(guess)
         window["lista"].update(tidigare_gissningar)
+        window["ord"].update(tidigare_ord)
         
     def lasbart(tidigare_gissningar):
         nytext = ""
@@ -62,5 +63,16 @@ window.close()
 
     window["ord"].update(tidigare_ord)
 
+
+window.close()
+
+    text1 = ""
+
+    for tuppel in tidigare_gissningar:
+        for s in tuppel:
+            text1+=str(s)+ " "
+        text1 += "\n"
+    return text1
+    
 
 window.close()
