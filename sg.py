@@ -4,8 +4,9 @@ import SwedishWordle
 
 sg.theme('DarkTeal6')
 
+
 sz=(70,70)
-col1=[[sg.Text("...", key = "lista",background_color='Teal', size=sz)]]
+col1=[[sg.Text( "...", key = "lista",background_color='Teal', size=sz)]]
 col2=[[sg.Text("...", key = "ord", background_color='Teal', size=sz),]]
 
 
@@ -20,7 +21,8 @@ layout2 = [
 layout = [
     [sg.Column(layout1, key = 'COL1'), sg.Column(layout2, visible = False, key = 'COL2')]]
 
-window = sg.Window("Wordguesser", layout, size = (1000, 500))
+window = sg.Window("Wordguesser", layout, size = (1000,600))
+
 
 layout = 1
 
@@ -47,16 +49,11 @@ while True:
         message = f'{new_guess}'
         tidigare_gissningar.append(message)
         tidigare_ord.append(guess)
-        window["lista"].update(tidigare_gissningar)
-        window["ord"].update(tidigare_ord)
+        window["lista"].update("\n".join(tidigare_gissningar))
+        # tidigare_ord
+        window["ord"].update("\n".join(tidigare_ord))
         
-    def lasbart(tidigare_gissningar):
-        nytext = ""
-        for tuppel in tidigare_gissningar:
-            for s in tuppel:
-                nytext+=str(s)+ " "
-            nytext += "\n"
-        return nytext
+ 
     
 
 window.close()
