@@ -61,6 +61,5 @@ while True:
 
 window.close()
 
-    window["ord"].update(tidigare_ord)
 
 
