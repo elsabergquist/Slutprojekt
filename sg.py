@@ -50,6 +50,14 @@ while True:
         tidigare_gissningar.append(message+'\n')
         window["lista"].update(tidigare_gissningar)
         
+    def lasbart(tidigare_gissningar):
+
+    text = ""
+    for tuppel in tidigare_gissningar:
+        for s in tuppel:
+            text+=str(s)+ " "
+        text += "\n"
+    return text
     
     
     # if event == "gissa2":
