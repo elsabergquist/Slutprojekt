@@ -48,44 +48,17 @@ while True:
         tidigare_gissningar.append(message)
         tidigare_ord.append(guess)
         window["lista"].update(tidigare_gissningar)
+        window["ord"].update(tidigare_ord)
         
     def lasbart(tidigare_gissningar):
 
     text1 = ""
+
     for tuppel in tidigare_gissningar:
         for s in tuppel:
             text1+=str(s)+ " "
         text1 += "\n"
     return text1
     
-    
-    # if event == "gissa2":
-        #guess2 = game.Guess('gissa')
-        #message = f'{guess2}'
-        #layout = layout + 1 
-        #window[f'COL{layout}'].update(visible = True)
-        #window["info"].update(message)
-
-    #if event == "gissa3":
-        #guess3 = game.Guess('gissa')
-        #message = f'{guess3}'
-        #window["info"].update(message)
-        
-
-   # if guess == result:
-    #    correct = True
-    #    break
-
-    #if correct:
-    #    sg.popup('You win!')
-
-    
-
-
-
-window.close()
-
-        window["ord"].update(tidigare_ord)
-
 
 window.close()
