@@ -47,7 +47,7 @@ while True:
         guess = values['gissning']#hämta från inputen
         new_guess = game.Guess(guess)
         message = f'{new_guess}'
-        tidigare_gissningar.append(message+'\n')
+        tidigare_gissningar.append(message)
         window["lista"].update(tidigare_gissningar)
         
     
