@@ -5,20 +5,21 @@ import SwedishWordle
 sg.theme('Reddit')
 
 
-sz=(52,15)
-col1=[[sg.Text('ledtråd')],[sg.Text( "...", key = "lista",background_color='blue', size=sz)]]
-col2=[[sg.Text('ord')],[sg.Text("...", key = "ord", background_color='blue', size=sz)]]
+sz=(40,15)
+col1=[[sg.Text('Ledtråd', font = 'Franklin 20')],[sg.Text( "...", key = "lista",background_color='blue', size=sz)]]
+col2=[[sg.Text('Ord', font = 'Franklin 20')],[sg.Text("...", key = "ord", background_color='blue', size=sz)]]
+col3=[[sg.Text('Antal gissningar', font = 'Franklin 20')],[sg.Text("...", key = "antal", background_color='blue', size = (20,15))]]
 
 
 layout1 = [
     [sg.Text('Hej och välkomna till vår wordguesser!', font = 'Franklin 26')],
     [sg.Text('Spelet går ut på att du ska försöka gissa vilket ord med fem bokstäver som jag tänker på! \nNär du har gissat på ett ord så kan du se vilket eller vilka bokstäver som finns i det riktiga ordet. \n0 betyder att bokstaven inte finns i ordet\n1 betyder att bokstaven är rätt men på fel plats \n2 betyder att bokstaven är rätt och på rätt plats', font = 'Franklin 17')],
-    [sg.Text('Vill du starta ett nytt spel?', font = 'Franklin 20'), sg.Button("ja, starta nytt spel", font = 'Franklin 20', key="get_new")]
+    [sg.Text('Vill du starta ett nytt spel?', font = 'Franklin 20'), sg.Button("Ja, starta nytt spel", font = 'Franklin 20', key="get_new")]
     ]
     
 layout2 = [
     [sg.Input(key = 'gissning' , font = 'Franklin 20'), sg.Button('gissa', font = 'Franklin 20', key='gissa')],
-    [sg.Column(col1 , element_justification='c'), sg.Column(col2, element_justification='c')]]
+    [sg.Column(col1 , element_justification='c'), sg.Column(col2, element_justification='c'), sg.Column(col3, element_justification= 'c')]]
 
 layout3 = [
     [sg.Text('Grattis! du vann!', font = 'Franklin 26') ],
@@ -39,7 +40,7 @@ layout = 1
 
 tidigare_gissningar = []
 tidigare_ord = []
-
+antal_gissningar= 0
 
 while True:
     event, values = window.read()
@@ -72,6 +73,8 @@ while True:
         window["lista"].update("\n".join(tidigare_gissningar))
         # tidigare_ord
         window["ord"].update("\n".join(tidigare_ord))
+        antal_gissningar += 1
+        window["antal"].update(antal_gissningar)
 
         if guess == game.Get_current_word():
             window[f'COL{layout}'].update(visible = False)
