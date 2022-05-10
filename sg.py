@@ -6,8 +6,8 @@ sg.theme('Reddit')
 
 
 sz=(52,15)
-col1=[[sg.Text( "...", key = "lista",background_color='White', size=sz)]]
-col2=[[sg.Text("...", key = "ord", background_color='White', size=sz)]]
+col1=[[sg.Text('ledtråd')],[sg.Text( "...", key = "lista",background_color='blue', size=sz)]]
+col2=[[sg.Text('ord')],[sg.Text("...", key = "ord", background_color='blue', size=sz)]]
 
 
 layout1 = [
