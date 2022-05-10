@@ -15,6 +15,9 @@ class Game(object):
         self._word = random.choice(self.words_in_game)
         self.num_guesses = 0
 
+    def Get_current_word(self):
+        return self._word
+
     def Guess(self, word_guess):
         """ Ger gissningen mot det dolda ordet som array lika lång som gissat or. En int för varje gissad bokstav. 
                 2 - rätt bokstav på rätt plats
