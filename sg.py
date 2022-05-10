@@ -2,12 +2,12 @@ import PySimpleGUI as sg
 import SwedishWordle  
 
 
-sg.theme('DarkTeal6')
+sg.theme('Reddit')
 
 
 sz=(52,15)
-col1=[[sg.Text( "...", key = "lista",background_color='Teal', size=sz)]]
-col2=[[sg.Text("...", key = "ord", background_color='Teal', size=sz),]]
+col1=[[sg.Text( "...", key = "lista",background_color='White', size=sz)]]
+col2=[[sg.Text("...", key = "ord", background_color='White', size=sz)]]
 
 
 layout1 = [
