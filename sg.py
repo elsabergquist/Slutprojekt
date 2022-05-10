@@ -5,10 +5,9 @@ import SwedishWordle
 sg.theme('DarkTeal6')
 
 
-sz=(45,30)
+sz=(52,15)
 col1=[[sg.Text( "...", key = "lista",background_color='Teal', size=sz)]]
 col2=[[sg.Text("...", key = "ord", background_color='Teal', size=sz),]]
-col3=[[sg.Text("...", key = "ord", background_color='Teal', size=sz),]]
 
 
 layout1 = [
@@ -18,18 +17,22 @@ layout1 = [
     ]
     
 layout2 = [
-    [sg.Input(key = 'gissning'), sg.Button('gissa', key='gissa')],
-    [sg.Column(col1, element_justification='c'), sg.Column(col2, element_justification='c')]]
+    [sg.Input(key = 'gissning' , font = 'Franklin 20'), sg.Button('gissa', font = 'Franklin 20', key='gissa')],
+    [sg.Column(col1 , element_justification='c'), sg.Column(col2, element_justification='c')]]
 
 layout3 = [
-    [sg.Text('Grattis! du vann!') ],
-    [sg.Text('Vill du spela igen?'), sg.Button('ja!', key = 'kör_igen')],
-    [sg.Column(col3, element_justification='c')]]
+    [sg.Text('Grattis! du vann!', font = 'Franklin 26') ],
+    [sg.Text('Vill du spela igen?', font = 'Franklin 26'), sg.Button('ja!', key = 'kör_igen', font = 'Franklin 26')],
+    ]
+
+layout4 = [
+    [sg.Text("Felaktig längd på ord. Du gissade \"{word_guess}\". Detta spel är om ord som är {len(self._word)} i längd")]
+]
 
 layout = [
     [sg.Column(layout1, key = 'COL1'), sg.Column(layout2, visible = False, key = 'COL2'), sg.Column(layout3, visible = False, key = 'COL3')]]
 
-window = sg.Window("Wordguesser", layout, size = (800,300))
+window = sg.Window("Wordguesser", layout)
 
 
 layout = 1
@@ -74,6 +77,8 @@ while True:
             window[f'COL{layout}'].update(visible = False)
             layout = layout + 1
             window[f'COL{layout}'].update(visible = True)
+    
+        
             
   
         
