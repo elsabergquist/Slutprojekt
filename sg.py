@@ -6,9 +6,11 @@ sg.theme('Reddit')
 
 
 sz=(40,15)
-col1=[[sg.Text('Ledtråd', font = 'Franklin 20')],[sg.Text( "...", key = "lista",background_color='blue', size=sz)]]
-col2=[[sg.Text('Ord', font = 'Franklin 20')],[sg.Text("...", key = "ord", background_color='blue', size=sz)]]
-col3=[[sg.Text('Antal gissningar', font = 'Franklin 20')],[sg.Text("...", key = "antal", background_color='blue', size = (20,15))]]
+fs = 'Frankline 20'
+
+col1=[[sg.Text('Ledtråd', font = fs)],[sg.Text( "...", key = "lista", justification = 'center', background_color='blue', size=sz)]]
+col2=[[sg.Text('Ord', font = fs)],[sg.Text("...", key = "ord", justification = 'center', background_color='blue', size=sz)]]
+col3=[[sg.Text('Antal gissningar', font = fs)],[sg.Text("...", justification = 'center', font = 'Franklin 50', key = "antal", background_color='blue', size = (20,15))]]
 
 
 layout1 = [
