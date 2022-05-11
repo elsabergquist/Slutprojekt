@@ -89,6 +89,7 @@ while True:
             window["antal"].update(antal_gissningar)
         
             if antal_gissningar >= 5: 
+                antal_gissningar = 0
                 window[f'COL{layout}'].update(visible = False)
                 layout = layout + 2
                 window[f'COL{layout}'].update(visible = True)
@@ -97,17 +98,12 @@ while True:
                 window[f'COL{layout}'].update(visible = False)
                 layout = layout + 1
                 window[f'COL{layout}'].update(visible = True)
-                
+
         except ValueError:
             felmeddelande = "Någonting gick fel"
             window["varning"].update(felmeddelande)
+
     
-
-     
-
-
-
-
 window.close()
 
 
