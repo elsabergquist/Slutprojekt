@@ -1,4 +1,3 @@
-from os import fsencode
 import PySimpleGUI as sg
 import SwedishWordle  
 
@@ -35,7 +34,7 @@ layout3 = [
     ]
 
 layout4 = [
-    [sg.Text('Du har max 5 gissningar', font = fs)],   [sg.Text('Vill du spela igen?', font = 'Franklin 26'), sg.Button('ja!', key = 'kör_igen2', font = 'Franklin 26')],
+    [sg.Text('Du har max 5 gissningar', font = fs)],   [sg.Text('Vill du spela igen?', font = 'Franklin 26'), sg.Button('ja!', key ="kör_igen2", font = 'Franklin 26')],
     ]
 
 layout = [
@@ -63,18 +62,28 @@ while True:
         window[f'COL{layout}'].update(visible = True)
 
     if event == "get_new":
-        window["lista"].update("")
-        # tidigare_ord
-        window["ord"].update("")
         window[f'COL{layout}'].update(visible = False)
         layout = layout + 1
         window[f'COL{layout}'].update(visible = True)
+        window["lista"].update("")
+        window["lista"].update(visible = True)
+        # tidigare_ord
+        window["ord"].update("")
+        window["antal"].update("")
         game = SwedishWordle.Game(5)
+        window.Refresh()
 
     
     if event == "gissa":
         guess = values['gissning']#hämta från inputen
-        new_guess = game.Guess(guess)
+        
+        try:
+            new_guess = game.Guess(guess)
+        except ValueError:
+            print("gick fel")
+            window
+            break
+
         message = f'{new_guess}'
         tidigare_gissningar.append(message)
         tidigare_ord.append(guess)
@@ -93,11 +102,10 @@ while True:
             window[f'COL{layout}'].update(visible = False)
             layout = layout + 1
             window[f'COL{layout}'].update(visible = True)
-    
-        
-            
-  
-        
+
+
+
+
 window.close()
 
 
