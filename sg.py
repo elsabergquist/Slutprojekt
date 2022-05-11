@@ -1,3 +1,4 @@
+from tkinter import RAISED
 import PySimpleGUI as sg
 import SwedishWordle  
 
@@ -86,11 +87,10 @@ while True:
             window[f'COL{layout}'].update(visible = False)
             layout = layout + 1
             window[f'COL{layout}'].update(visible = True)
-    
-        
-            
-  
-        
+
+
+
+
 window.close()
 
 
