@@ -14,13 +14,13 @@ col1=[[sg.Text('Ledtråd', font = fs)],
 col2=[[sg.Text('Ord', font = fs)],
 [sg.Text("...", key = "ord", text_color = tc, justification = 'center', font = 'Franklin 20', background_color='blue', size=sz)]]
 col3=[[sg.Text('Antal gissningar', font = fs)],
-[sg.Text("...",  key = "antal", text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (20,15))]]
+[sg.Text("...",  key = "antal", text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (20,5))]]
 
 
 layout1 = [
-    [sg.Text('Hej och välkomna till vår wordguesser!', font = 'Franklin 26')],
-    [sg.Text('Spelet går ut på att du ska försöka gissa vilket ord med fem bokstäver som jag tänker på! \nNär du har gissat på ett ord så kan du se vilket eller vilka bokstäver som finns i det riktiga ordet. \n0 betyder att bokstaven inte finns i ordet\n1 betyder att bokstaven är rätt men på fel plats \n2 betyder att bokstaven är rätt och på rätt plats', font = 'Franklin 17')],
-    [sg.Text('Vill du starta ett nytt spel?', font = 'Franklin 20'), sg.Button("Ja, starta nytt spel", font = 'Franklin 20', key="get_new")]
+    [sg.Text('Hej och välkomna till vår wordguesser!', font = 'Franklin 26', justification = 'center')],
+    [sg.Text('Spelet går ut på att du ska försöka gissa vilket ord med fem bokstäver som jag tänker på! \nNär du har gissat på ett ord så kan du se vilket eller vilka bokstäver som finns i det riktiga ordet. \n0 betyder att bokstaven inte finns i ordet\n1 betyder att bokstaven är rätt men på fel plats \n2 betyder att bokstaven är rätt och på rätt plats', font = 'Franklin 17', justification = 'center')],
+    [sg.Text('Vill du starta ett nytt spel?', font = 'Franklin 20', justification = 'center'), sg.Button("Ja, starta nytt spel", font = 'Franklin 20', key="get_new")]
     ]
     
 layout2 = [
@@ -40,7 +40,7 @@ layout4 = [
 layout = [
     [sg.Column(layout1, key = 'COL1'), sg.Column(layout2, visible = False, key = 'COL2'), sg.Column(layout3, visible = False, key = 'COL3'), sg.Column(layout4, visible = False, key = 'COL4')]]
 
-window = sg.Window("Wordguesser", layout)
+window = sg.Window("Wordguesser", layout, size=(800,300) )
 
 
 layout = 1
@@ -50,6 +50,7 @@ tidigare_ord = []
 antal_gissningar= 0
 
 while True:
+
     event, values = window.read()
 
     # End program if user closes window
@@ -62,6 +63,10 @@ while True:
         window[f'COL{layout}'].update(visible = True)
 
     if event == "get_new":
+
+        tidigare_gissningar = []
+        tidigare_ord = []
+        antal_gissningar= 0
         window[f'COL{layout}'].update(visible = False)
         layout = layout + 1
         window[f'COL{layout}'].update(visible = True)
@@ -88,8 +93,10 @@ while True:
             antal_gissningar += 1
             window["antal"].update(antal_gissningar)
         
-            if antal_gissningar >= 5: 
+            if antal_gissningar > 5: 
                 antal_gissningar = 0
+                tidigare_gissningar = []
+                tidigare_ord = []
                 window[f'COL{layout}'].update(visible = False)
                 layout = layout + 2
                 window[f'COL{layout}'].update(visible = True)
