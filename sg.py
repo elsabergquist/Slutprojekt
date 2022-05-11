@@ -1,4 +1,7 @@
-from tkinter import RAISED
+<<<<<<< HEAD
+=======
+from os import fsencode
+>>>>>>> a6385a6084e7a7978e0e8b2d1a135ac70a29cf04
 import PySimpleGUI as sg
 import SwedishWordle  
 
@@ -34,11 +37,11 @@ layout3 = [
     ]
 
 layout4 = [
-    [sg.Text("Felaktig längd på ord. Du gissade \"{word_guess}\". Detta spel är om ord som är {len(self._word)} i längd")]
-]
+    [sg.Text('Du har max 5 gissningar', font = fs)],   [sg.Text('Vill du spela igen?', font = 'Franklin 26'), sg.Button('ja!', key = 'kör_igen2', font = 'Franklin 26')],
+    ]
 
 layout = [
-    [sg.Column(layout1, key = 'COL1'), sg.Column(layout2, visible = False, key = 'COL2'), sg.Column(layout3, visible = False, key = 'COL3')]]
+    [sg.Column(layout1, key = 'COL1'), sg.Column(layout2, visible = False, key = 'COL2'), sg.Column(layout3, visible = False, key = 'COL3'), sg.Column(layout4, visible = False, key = 'COL4')]]
 
 window = sg.Window("Wordguesser", layout)
 
@@ -56,7 +59,7 @@ while True:
     if event == sg.WIN_CLOSED:
         break
 
-    if event == "kör_igen":
+    if event == "kör_igen" or event ==  "kör_igen2":
         window[f'COL{layout}'].update(visible = False)
         layout = 1
         window[f'COL{layout}'].update(visible = True)
@@ -66,7 +69,7 @@ while True:
         # tidigare_ord
         window["ord"].update("")
         window[f'COL{layout}'].update(visible = False)
-        layout = layout +1
+        layout = layout + 1
         window[f'COL{layout}'].update(visible = True)
         game = SwedishWordle.Game(5)
 
@@ -82,6 +85,12 @@ while True:
         window["ord"].update("\n".join(tidigare_ord))
         antal_gissningar += 1
         window["antal"].update(antal_gissningar)
+      
+        if antal_gissningar >= 5: 
+            window[f'COL{layout}'].update(visible = False)
+            layout = layout + 2
+            window[f'COL{layout}'].update(visible = True)
+        
 
         if guess == game.Get_current_word():
             window[f'COL{layout}'].update(visible = False)
