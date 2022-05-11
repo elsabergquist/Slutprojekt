@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 import SwedishWordle  
-
+import io
 
 sg.theme('Reddit')
 
@@ -74,9 +74,12 @@ while True:
         window.Refresh()
 
     
+       
+
+
     if event == "gissa":
         guess = values['gissning']#hämta från inputen
-       
+
         try:
             new_guess = game.Guess(guess)
             message = f'{new_guess}'
@@ -98,6 +101,9 @@ while True:
                 window[f'COL{layout}'].update(visible = False)
                 layout = layout + 1
                 window[f'COL{layout}'].update(visible = True)
+#nytt
+                with io.open("highscorelista.py", "w", encoding= 'utf-8') as hs:
+                    hs.write(str(antal_gissningar))
 
         except ValueError:
             felmeddelande = "Någonting gick fel"
