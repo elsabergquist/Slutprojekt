@@ -5,12 +5,16 @@ import SwedishWordle
 sg.theme('Reddit')
 
 
-sz=(40,15)
+sz=(20,30)
 fs = 'Frankline 20'
+tc= 'white'
 
-col1=[[sg.Text('Ledtråd', font = fs)],[sg.Text( "...", key = "lista", justification = 'center', background_color='blue', size=sz)]]
-col2=[[sg.Text('Ord', font = fs)],[sg.Text("...", key = "ord", justification = 'center', background_color='blue', size=sz)]]
-col3=[[sg.Text('Antal gissningar', font = fs)],[sg.Text("...", justification = 'center', font = 'Franklin 50', key = "antal", background_color='blue', size = (20,15))]]
+col1=[[sg.Text('Ledtråd', font = fs)],
+[sg.Text( "...", key = "lista", text_color = tc, justification = 'center', font = 'Franklin 20', background_color='blue', size=sz)]]
+col2=[[sg.Text('Ord', font = fs)],
+[sg.Text("...", key = "ord", text_color = tc, justification = 'center', font = 'Franklin 20', background_color='blue', size=sz)]]
+col3=[[sg.Text('Antal gissningar', font = fs)],
+[sg.Text("...", text_color = tc, justification = 'center', font = 'Franklin 50', key = "antal", background_color='blue', size = (20,15))]]
 
 
 layout1 = [
