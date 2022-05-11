@@ -25,7 +25,7 @@ layout1 = [
     
 layout2 = [
     [sg.Input(key = 'gissning' , font = 'Franklin 20'), sg.Button('gissa', font = 'Franklin 20', key='gissa')],
-    [sg.Text("", key= "varning", font = fs)]
+    [sg.Text("...", key= "varning", font = fs)],
     [sg.Column(col1 , element_justification='c'), sg.Column(col2, element_justification='c'), sg.Column(col3, element_justification= 'c')]]
 
 layout3 = [
@@ -76,32 +76,34 @@ while True:
     
     if event == "gissa":
         guess = values['gissning']#hämta från inputen
-        
+       
         try:
             new_guess = game.Guess(guess)
+            message = f'{new_guess}'
+            tidigare_gissningar.append(message)
+            tidigare_ord.append(guess)
+            window["lista"].update("\n".join(tidigare_gissningar))
+            # tidigare_ord
+            window["ord"].update("\n".join(tidigare_ord))
+            antal_gissningar += 1
+            window["antal"].update(antal_gissningar)
+        
+            if antal_gissningar >= 5: 
+                window[f'COL{layout}'].update(visible = False)
+                layout = layout + 2
+                window[f'COL{layout}'].update(visible = True)
+
+            if guess == game.Get_current_word():
+                window[f'COL{layout}'].update(visible = False)
+                layout = layout + 1
+                window[f'COL{layout}'].update(visible = True)
+                
         except ValueError:
-            print("gick fel")
-            window
-            break
+            felmeddelande = "Någonting gick fel"
+            window["varning"].update(felmeddelande)
+    
 
-        message = f'{new_guess}'
-        tidigare_gissningar.append(message)
-        tidigare_ord.append(guess)
-        window["lista"].update("\n".join(tidigare_gissningar))
-        # tidigare_ord
-        window["ord"].update("\n".join(tidigare_ord))
-        antal_gissningar += 1
-        window["antal"].update(antal_gissningar)
-      
-        if antal_gissningar >= 5: 
-            window[f'COL{layout}'].update(visible = False)
-            layout = layout + 2
-            window[f'COL{layout}'].update(visible = True)
-
-        if guess == game.Get_current_word():
-            window[f'COL{layout}'].update(visible = False)
-            layout = layout + 1
-            window[f'COL{layout}'].update(visible = True)
+     
 
 
 
