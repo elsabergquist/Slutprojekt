@@ -14,7 +14,7 @@ col1=[[sg.Text('Ledtråd', font = fs)],
 col2=[[sg.Text('Ord', font = fs)],
 [sg.Text("...", key = "ord", text_color = tc, justification = 'center', font = 'Franklin 20', background_color='blue', size=sz)]]
 col3=[[sg.Text('Antal gissningar', font = fs)],
-[sg.Text("...", text_color = tc, justification = 'center', font = 'Franklin 50', key = "antal", background_color='blue', size = (20,15))]]
+[sg.Text("...",  key = "antal", text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (20,15))]]
 
 
 layout1 = [
@@ -25,6 +25,7 @@ layout1 = [
     
 layout2 = [
     [sg.Input(key = 'gissning' , font = 'Franklin 20'), sg.Button('gissa', font = 'Franklin 20', key='gissa')],
+    [sg.Text("", key= "varning", font = fs)]
     [sg.Column(col1 , element_justification='c'), sg.Column(col2, element_justification='c'), sg.Column(col3, element_justification= 'c')]]
 
 layout3 = [
@@ -97,7 +98,6 @@ while True:
             window[f'COL{layout}'].update(visible = False)
             layout = layout + 2
             window[f'COL{layout}'].update(visible = True)
-        
 
         if guess == game.Get_current_word():
             window[f'COL{layout}'].update(visible = False)
