@@ -1,11 +1,27 @@
 from ast import Dict
+from email.mime import application
 import PySimpleGUI as sg
 import SwedishWordle  
 import io
 import highscorelista
 import json
+import os.path
 
 sg.theme('Reddit')
+
+
+
+highscore_file_path = "highscore.json"
+highscore = []
+
+
+if os.path.isfile(highscore_file_path) :
+
+    f = open(highscore_file_path, "r")
+    #Reading from file
+    highscore = json.load(f)
+    print(highscore)
+    f.close()
 
 
 sz=(20,30)
@@ -62,6 +78,7 @@ layout = 1
 tidigare_gissningar = []
 tidigare_ord = []
 antal_gissningar= 0
+
 
 while True:
 
@@ -130,22 +147,23 @@ while True:
                 window[f'COL{layout}'].update(visible = False)
                 layout = layout + 1
                 window[f'COL{layout}'].update(visible = True)
-
-                highscore = highscorelista.pick(antal_gissningar)
+                print(highscore)
+                highscore = highscorelista.uppdate_highscorelist(highscore, guess, antal_gissningar)
                 window["antal"].update(antal_gissningar)
                 window["score"].update(highscore)
 
-                dict = {}
 
-                dict[tuple(highscore)]='highscore'
+                with open(highscore_file_path, "w") as f:
+                    json.dump(highscore, f)
 
-                a_file = open("data.json", "w")
-                json.dump(str(dict), a_file)
-                a_file.close()
 
-                a_file = open("data.json", "rb")
-                output = json.load(a_file)
-                print(output)
+                #a_file = open("highscore.json", "w")
+                #json.dump(str(dict), a_file)
+                #a_file.close()
+
+                #a_file = open("data.json", "rb")
+                #output = json.load(a_file)
+                #print(output)
          
 
         except ValueError:
