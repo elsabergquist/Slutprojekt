@@ -1,8 +1,6 @@
 
 
-high_score_list = []
-
-def pick(antal_gissningar):
-
-    high_score_list.append(antal_gissningar)
-    return(high_score_list)
+def uppdate_highscorelist(highscore, guess, antal_gissningar):
+    high_score_element = {"word":guess,"count":antal_gissningar}
+    highscore.append(high_score_element)
+    return(highscore)
