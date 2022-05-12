@@ -1,7 +1,9 @@
+from ast import Dict
 import PySimpleGUI as sg
 import SwedishWordle  
 import io
 import highscorelista
+import json
 
 sg.theme('Reddit')
 
@@ -131,9 +133,20 @@ while True:
 
                 highscore = highscorelista.pick(antal_gissningar)
                 window["antal"].update(antal_gissningar)
-                print(highscore)
                 window["score"].update(highscore)
 
+                dict = {}
+
+                dict[tuple(highscore)]='highscore'
+
+                a_file = open("data.json", "w")
+                json.dump(str(dict), a_file)
+                a_file.close()
+
+                a_file = open("data.json", "rb")
+                output = json.load(a_file)
+                print(output)
+         
 
         except ValueError:
             felmeddelande = "Någonting gick fel"
