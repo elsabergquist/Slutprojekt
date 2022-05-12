@@ -155,15 +155,6 @@ while True:
 
                 with open(highscore_file_path, "w") as f:
                     json.dump(highscore, f)
-
-
-                #a_file = open("highscore.json", "w")
-                #json.dump(str(dict), a_file)
-                #a_file.close()
-
-                #a_file = open("data.json", "rb")
-                #output = json.load(a_file)
-                #print(output)
          
 
         except ValueError:
