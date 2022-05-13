@@ -4,6 +4,11 @@ import PySimpleGUI as sg
 import SwedishWordle  
 from highscorelista import *
 
+#Flytta ut onödig info
+
+#Flytta layout info till egen .py
+
+
 #listor
 highscore_file_path = 'highscore.json'
 highscore = []
@@ -86,6 +91,8 @@ while True:
         tidigare_ord = []
         antal_gissningar= 0
 
+        #funktion av window och upppdatering av layout
+        
         window[f'COL{layout}'].update(visible = False)
         layout = layout + 1
         window[f'COL{layout}'].update(visible = True)
@@ -106,6 +113,10 @@ while True:
     if event == 'highscore_button':
         # laddar highscore
         highscore = read_highscorelist()
+        highscore.sort(key=lambda x: x["count"])
+        all_ord = ""
+        for hs in highscore:
+            all_ord += hs["word"]
         layout = 1
         window[f'COL{layout}'].update(visible = False)
         layout= layout + 4
