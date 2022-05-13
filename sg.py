@@ -90,10 +90,10 @@ while True:
         layout = layout + 1
         window[f'COL{layout}'].update(visible = True)
 
-        window["lista"].update("")
-        window["lista"].update(visible = True)
-        window["ord"].update("")
-        window["antal"].update("")
+        window['lista'].update('')
+        window['lista'].update(visible = True)
+        window['ord'].update('')
+        window['antal'].update('')
         game = SwedishWordle.Game(5)
         window.Refresh()
 
@@ -103,15 +103,15 @@ while True:
         window[f'COL{layout}'].update(visible = True)
 
 
-    if event == "highscore_button":
+    if event == 'highscore_button':
         # laddar highscore
         highscore = read_highscorelist()
         layout = 1
         window[f'COL{layout}'].update(visible = False)
         layout= layout + 4
         window[f'COL{layout}'].update(visible = True)
-        window["antal"].update(antal_gissningar)
-        window["score"].update(highscore)
+        window['antal'].update(antal_gissningar)
+        window['score'].update(highscore)
 
     if event == 'gissa_button':
         guess = values['gissning']#hämta från inputen
