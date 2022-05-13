@@ -4,12 +4,13 @@ import PySimpleGUI as sg
 import SwedishWordle  
 from highscorelista import *
 
-
-sg.theme('Reddit')
-
+#listor
+highscore_file_path = 'highscore.json'
 highscore = []
 antal_gissningar = 0
 
+
+sg.theme('Reddit')
 sz=(20,30) #size
 fs = 'Frankline 20' #fontsize
 tc= 'white' #text color
@@ -21,7 +22,8 @@ col2=[[sg.Text('Ord', font = fs)],
 [sg.Text('...', key ='ord', text_color = tc, justification = 'center', font = 'Franklin 20', background_color='blue', size=sz)]]
 col3=[[sg.Text('Antal gissningar', font = fs)],
 [sg.Text('...',  key = 'antal', text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (20,5))]]
-col4=[[sg.Text("...", key = 'score', text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (15,10))]]
+col4=[[sg.Text('Vinstgissning:', font = fs)],[sg.Text('...', key = 'score', text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (15,10))]]
+col5=[[sg.Text('Antal gissningar', font = fs)],[sg.Text('...', key = 'rätt_ord', text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (15,10))]]
 
 #layout
 layout_startsida = [
@@ -54,9 +56,9 @@ layout_maxgissningar = [
     ]
 
 layout_highscorelista = [
-    [sg.Text('Highscore', font = fs)], 
-    [sg.Column(col4, element_justification=('c')), 
-    sg.Button('Tillbaka till startsidan', key ='tillbaka_button', font= 'Frankline 20' )]]
+    [sg.Text('Highscore', font = fs), sg.Button('Tillbaka till startsidan', key ='tillbaka_button', font= 'Frankline 20' )],
+    [sg.Column(col4, element_justification=('c')), sg.Column(col5, element_justification=('c'))]
+    ]
 
 layout = [
     [sg.Column(layout_startsida, key = 'COL1'), sg.Column(layout_spelsida, visible = False, key = 'COL2'), sg.Column(layout_vinstsida, visible = False, key = 'COL3'), sg.Column(layout_maxgissningar, visible = False, key = 'COL4'),  sg.Column(layout_highscorelista, visible = False, key = 'COL5')]]
@@ -65,9 +67,7 @@ window = sg.Window('Wordle', layout, size=(800,300) )
 
 layout = 1
 
-#listor
-highscore_file_path = 'highscore.json'
-highscore = []
+
 
 while True:
     event, values = window.read()
