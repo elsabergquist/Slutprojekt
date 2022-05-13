@@ -8,7 +8,7 @@ from highscorelista import *
 sg.theme('Reddit')
 
 highscore = []
-
+antal_gissningar = 0
 
 sz=(20,30) #size
 fs = 'Frankline 20' #fontsize
