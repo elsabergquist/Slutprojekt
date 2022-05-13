@@ -10,23 +10,23 @@ import os.path
 sg.theme('Reddit')
 
 
-
 highscore_file_path = "highscore.json"
 highscore = []
 
-
+#Öppnar highscore filen
 if os.path.isfile(highscore_file_path) :
 
     f = open(highscore_file_path, "r")
     #Reading from file
     highscore = json.load(f)
-    print(highscore)
     f.close()
 
 
-sz=(20,30)
-fs = 'Frankline 20'
-tc= 'white'
+sz=(20,30) #size
+fs = 'Frankline 20' #fontsize
+tc= 'white' #text color
+
+#kolummner
 
 col1=[[sg.Text('Ledtråd', font = fs)],
 [sg.Text( "...", key = "lista", text_color = tc, justification = 'center', font = 'Franklin 20', background_color='blue', size=sz)]]
@@ -36,6 +36,7 @@ col3=[[sg.Text('Antal gissningar', font = fs)],
 [sg.Text("...",  key = "antal", text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (20,5))]]
 col4=[[sg.Text("...", key = "score", text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (15,10))]]
 
+#layout
 
 layout1 = [
     [sg.Text('Hej och välkomna till vår wordguesser!', font = 'Franklin 26', justification = 'center')],
@@ -63,7 +64,7 @@ layout4 = [
     ]
 
 layout5 = [
-    [sg.Text('Highscore listan', font = fs)], 
+    [sg.Text('Highscore', font = fs)], 
     [sg.Column(col4, element_justification=('c')), 
     sg.Button('Tillbaka till startsidan', key ="tillbaka", font= 'Frankline 20' )]]
 
@@ -152,7 +153,7 @@ while True:
                 window["antal"].update(antal_gissningar)
                 window["score"].update(highscore)
 
-
+                #adderar nytt highscore till listan
                 with open(highscore_file_path, "w") as f:
                     json.dump(highscore, f)
          
