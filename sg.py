@@ -2,13 +2,14 @@ from ast import Dict
 from email.mime import application
 import PySimpleGUI as sg
 import SwedishWordle  
-import io
-import highscorelista
-import json
-import os.path
+from highscorelista import *
 
-#Design
+
 sg.theme('Reddit')
+
+highscore = []
+
+
 sz=(20,30) #size
 fs = 'Frankline 20' #fontsize
 tc= 'white' #text color
@@ -68,14 +69,6 @@ layout = 1
 highscore_file_path = 'highscore.json'
 highscore = []
 
-#Öppnar highscore filen
-if os.path.isfile(highscore_file_path) :
-
-    f = open(highscore_file_path, 'r')
-    #Reading from file
-    highscore = json.load(f)
-    f.close()
-
 while True:
     event, values = window.read()
 
@@ -92,14 +85,15 @@ while True:
         tidigare_gissningar = []
         tidigare_ord = []
         antal_gissningar= 0
+
         window[f'COL{layout}'].update(visible = False)
         layout = layout + 1
         window[f'COL{layout}'].update(visible = True)
-        window['lista'].update('')
-        window['lista'].update(visible = True)
-        # tidigare_ord
-        window['ord'].update('')
-        window['antal'].update('')
+
+        window["lista"].update("")
+        window["lista"].update(visible = True)
+        window["ord"].update("")
+        window["antal"].update("")
         game = SwedishWordle.Game(5)
         window.Refresh()
 
@@ -109,11 +103,15 @@ while True:
         window[f'COL{layout}'].update(visible = True)
 
 
-    if event == 'highscore_button':
+    if event == "highscore_button":
+        # laddar highscore
+        highscore = read_highscorelist()
         layout = 1
         window[f'COL{layout}'].update(visible = False)
         layout= layout + 4
         window[f'COL{layout}'].update(visible = True)
+        window["antal"].update(antal_gissningar)
+        window["score"].update(highscore)
 
     if event == 'gissa_button':
         guess = values['gissning']#hämta från inputen
@@ -130,6 +128,7 @@ while True:
             window['antal'].update(antal_gissningar)
         
             if antal_gissningar > 5: 
+
                 antal_gissningar = 0
                 tidigare_gissningar = []
                 tidigare_ord = []
@@ -138,18 +137,12 @@ while True:
                 window[f'COL{layout}'].update(visible = True)
 
             if guess == game.Get_current_word():
+
                 window[f'COL{layout}'].update(visible = False)
                 layout = layout + 1
                 window[f'COL{layout}'].update(visible = True)
-                print(highscore)
-                highscore = highscorelista.uppdate_highscorelist(highscore, guess, antal_gissningar)
-                window['antal'].update(antal_gissningar)
-                window['score'].update(highscore)
-
-                #adderar nytt highscore till listan
-                with open(highscore_file_path, 'w') as f:
-                    json.dump(highscore, f)
-         
+                highscore = uppdate_highscorelist(guess, antal_gissningar)
+                
 
         except ValueError:
             felmeddelande = 'Någonting gick fel'
