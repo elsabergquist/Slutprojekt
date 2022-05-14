@@ -4,6 +4,7 @@ import PySimpleGUI as sg
 import SwedishWordle  
 from highscorelista import *
 
+
 #Flytta ut onödig info
 
 #Flytta layout info till egen .py
@@ -13,6 +14,8 @@ from highscorelista import *
 highscore_file_path = 'highscore.json'
 highscore = []
 antal_gissningar = 0
+highscore_gissningar = []
+highscore_ord = []
 
 
 sg.theme('Reddit')
@@ -27,8 +30,8 @@ col2=[[sg.Text('Ord', font = fs)],
 [sg.Text('...', key ='ord', text_color = tc, justification = 'center', font = 'Franklin 20', background_color='blue', size=sz)]]
 col3=[[sg.Text('Antal gissningar', font = fs)],
 [sg.Text('...',  key = 'antal', text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (20,5))]]
-col4=[[sg.Text('Vinstgissning:', font = fs)],[sg.Text('...', key = 'score', text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (15,10))]]
-col5=[[sg.Text('Antal gissningar', font = fs)],[sg.Text('...', key = 'rätt_ord', text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (15,10))]]
+col4=[[sg.Text('Vinstgissning:', font = fs)],[sg.Text('...', key = 'rätt_ord', text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (15,20))]]
+col5=[[sg.Text('Antal gissningar', font = fs)],[sg.Text('...', key = 'score', text_color = tc, justification = 'center', font = fs, background_color='blue', size = (15,20))]]
 
 #layout
 layout_startsida = [
@@ -114,15 +117,24 @@ while True:
         # laddar highscore
         highscore = read_highscorelist()
         highscore.sort(key=lambda x: x["count"])
-        all_ord = ""
         for hs in highscore:
+            all_ord = ""
             all_ord += hs["word"]
+            highscore_ord.append(all_ord)
+        window['rätt_ord'].update('\n'.join(highscore_ord))
+        for hc in highscore:
+            highest_count = 0
+            highest_count += hc['count']
+            highscore_gissningar.append(highest_count)
+        window['score'].update(('\n'.join(str(highscore_gissningar))))
+
+        
+
         layout = 1
         window[f'COL{layout}'].update(visible = False)
         layout= layout + 4
         window[f'COL{layout}'].update(visible = True)
-        window['antal'].update(antal_gissningar)
-        window['score'].update(highscore)
+      
 
     if event == 'gissa_button':
         guess = values['gissning']#hämta från inputen
