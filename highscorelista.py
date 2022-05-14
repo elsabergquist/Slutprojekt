@@ -11,7 +11,7 @@ def uppdate_highscorelist(guess, antal_gissningar):
     highscore.append(high_score_element)
     with open(highscore_file_path, "w") as f:
         json.dump(highscore, f)
-
+    
     return highscore 
 
 def read_highscorelist():
@@ -26,4 +26,8 @@ def read_highscorelist():
             json.dump(empty_highscore, f)
 
         return empty_highscore
+
+
+
+
 
