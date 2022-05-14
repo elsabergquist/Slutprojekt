@@ -18,7 +18,7 @@ def read_highscorelist():
     if os.path.isfile(highscore_file_path):
         with open(highscore_file_path, "r") as file:
             highscore = json.load(file)
-
+            
         return highscore
     else:
         empty_highscore = []
