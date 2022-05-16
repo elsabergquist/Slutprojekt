@@ -71,7 +71,7 @@ layout_highscorelista = [
 layout = [
     [sg.Column(layout_startsida, key = 'COL1'), sg.Column(layout_spelsida, visible = False, key = 'COL2'), sg.Column(layout_vinstsida, visible = False, key = 'COL3'), sg.Column(layout_maxgissningar, visible = False, key = 'COL4'),  sg.Column(layout_highscorelista, visible = False, key = 'COL5')]]
 
-window = sg.Window('Wordle', layout, size=(800,300) )
+window = sg.Window('Wordle', layout, size=(800,400) )
 
 layout = 1
 
