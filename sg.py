@@ -30,7 +30,7 @@ col2=[[sg.Text('Ord', font = fs)],
 [sg.Text('...', key ='ord', text_color = tc, justification = 'center', font = 'Franklin 20', background_color='blue', size=sz)]]
 col3=[[sg.Text('Antal gissningar', font = fs)],
 [sg.Text('...',  key = 'antal', text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (20,5))]]
-col4=[[sg.Text('Vinstgissning:', font = fs)],[sg.Text('...', key = 'rätt_ord', text_color = tc, justification = 'center', font = 'Franklin 50', background_color='blue', size = (15,20))]]
+col4=[[sg.Text('Vinstgissning:', font = fs)],[sg.Text('...', key = 'rätt_ord', text_color = tc, justification = 'center', font = fs, background_color='blue', size = (15,20))]]
 col5=[[sg.Text('Antal gissningar', font = fs)],[sg.Text('...', key = 'score', text_color = tc, justification = 'center', font = fs, background_color='blue', size = (15,20))]]
 
 #layout
@@ -125,8 +125,8 @@ while True:
         for hc in highscore:
             highest_count = 0
             highest_count += hc['count']
-            highscore_gissningar.append(highest_count)
-        window['score'].update(('\n'.join(str(highscore_gissningar))))
+            highscore_gissningar.append(str(highest_count))
+        window['score'].update(('\n'.join(highscore_gissningar)))
 
         
 
