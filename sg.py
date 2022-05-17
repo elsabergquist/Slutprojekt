@@ -6,6 +6,7 @@ from highscorelista import *
 from layout import *
 
 
+
 #Flytta ut onödig info
 
 #Flytta layout info till egen .py
@@ -35,14 +36,15 @@ col4=[[sg.Text('Vinstgissning:', font = fs)],[sg.Text('...', key = 'rätt_ord', 
 col5=[[sg.Text('Antal gissningar', font = fs)],[sg.Text('...', key = 'score', text_color = tc, justification = 'center', font = fs, background_color='blue', size = (15,20))]]
 
 #layout
+
 layout_startsida = [
     [sg.Text('Hej och välkomna till Wordle!', font = 'Franklin 26', justification = 'center')],
     [sg.Text('Spelet går ut på att du ska försöka gissa vilket ord med fem bokstäver som jag tänker på! \nNär du har gissat på ett ord så kan du se vilket eller vilka bokstäver som finns i det riktiga ordet. \n0 betyder att bokstaven inte finns i ordet\n1 betyder att bokstaven är rätt men på fel plats \n2 betyder att bokstaven är rätt och på rätt plats', font = 'Franklin 17', justification = 'center')],
     [sg.Text('Vill du starta ett nytt spel?', font = 'Franklin 20', justification = 'center'), 
-    sg.Button('Ja, starta nytt spel', font = 'Franklin 20', key = 'starta_spel_button'),
-    sg.Button('Highscore', fonr = 'Franklin 20', key = 'highscore_button')]
-]
-
+    sg.Button('Ja, starta nytt spel', font = 'Franklin 20', key='starta_spel_button'), 
+    sg.Button('Highscore', font = 'Franklin 20', key='highscore_button')]
+        ]
+        
 layout_spelsida = [
     [sg.Input(key = 'gissning' , font = 'Franklin 20'), 
     sg.Button('gissa', font = 'Franklin 20', key='gissa_button')],
@@ -50,32 +52,32 @@ layout_spelsida = [
     [sg.Column(col1 , element_justification='c'), 
     sg.Column(col2, element_justification='c'), 
     sg.Column(col3, element_justification= 'c')]
-    ]
+        ]
 
 layout_vinstsida = [
     [sg.Text('Grattis! du vann!', font = 'Franklin 26') ],
     [sg.Text('Vill du spela igen?', font = 'Franklin 26'), 
     sg.Button('Ja!', key ='kör_igen_button', font = 'Franklin 26')],
-    ]
+        ]
 
 layout_maxgissningar = [
     [sg.Text('Du har max 5 gissningar', font = fs)],   
     [sg.Text('Vill du spela igen?', font = 'Franklin 26'), 
     sg.Button('Ja!', key ='kör_igen2_button', font = 'Franklin 26')],
-    ]
+        ]
 
 layout_highscorelista = [
     [sg.Text('Highscore', font = fs), sg.Button('Tillbaka till startsidan', key ='tillbaka_button', font= 'Frankline 20' )],
     [sg.Column(col4, element_justification=('c')), sg.Column(col5, element_justification=('c'))]
-    ]
+        ]
+    
 
-layout = [
-    [sg.Column(layout_startsida, key = 'COL1'), sg.Column(layout_spelsida, visible = False, key = 'COL2'), sg.Column(layout_vinstsida, visible = False, key = 'COL3'), sg.Column(layout_maxgissningar, visible = False, key = 'COL4'),  sg.Column(layout_highscorelista, visible = False, key = 'COL5')]]
+layout = [[sg.Column(layout_startsida, key = 'COL1'), sg.Column(layout_spelsida, visible = False, key = 'COL2'), sg.Column(layout_vinstsida, visible = False, key = 'COL3'), sg.Column(layout_maxgissningar, visible = False, key = 'COL4'),  sg.Column(layout_highscorelista, visible = False, key = 'COL5')]]
 
-window = sg.Window('Wordle', layout, size=(800,400) )
+window = sg.Window('Wordle', layout, size=(800,400))
+
 
 layout = 1
-
 
 
 while True:
@@ -118,16 +120,27 @@ while True:
         # laddar highscore
         highscore = read_highscorelist()
         highscore.sort(key=lambda x: x["count"])
+
+    
+
+        
         for hs in highscore:
             all_ord = ""
             all_ord += hs["word"]
             highscore_ord.append(all_ord)
-        window['rätt_ord'].update('\n'.join(highscore_ord))
+                
+
+        window['rätt_ord'].update('\n'.join(highscore_ord[0:9]))
+
         for hc in highscore:
+                
             highest_count = 0
             highest_count += hc['count']
             highscore_gissningar.append(str(highest_count))
-        window['score'].update(('\n'.join(highscore_gissningar)))
+
+            
+          
+        window['score'].update(('\n'.join(highscore_gissningar[0:9])))
 
         
 
