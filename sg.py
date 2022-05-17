@@ -17,17 +17,6 @@ layout = all_layout()
 window = sg.Window('Wordle', layout, size=(800,400))
 layout = 1
 
-def update_window(layout, window):
-    window[f'COL{layout}'].update(visible = False)
-    layout = layout + 1
-    window[f'COL{layout}'].update(visible = True)
-    return layout
-
-def update_window2(window, layout):
-    window[f'COL{layout}'].update(visible = False)
-    layout = 1
-    window[f'COL{layout}'].update(visible = True)
-    return layout
 
 while True:
     event, values = window.read()
@@ -38,7 +27,9 @@ while True:
 
     if event == 'kör_igen_button' or event == 'kör_igen2_button':
         
-        layout = update_window2(window, layout)
+        window[f'COL{layout}'].update(visible = False)
+        layout = 1
+        window[f'COL{layout}'].update(visible = True)
 
     if event == 'starta_spel_button':
         tidigare_gissningar = []
