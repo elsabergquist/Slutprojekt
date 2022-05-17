@@ -15,24 +15,10 @@ highscore_ord = []
 
 layout_startsida, layout_spelsida, layout_vinstsida, layout_maxgissningar, layout_highscorelista = layout_all()
     
-
 layout = [[sg.Column(layout_startsida, key = 'COL1'), sg.Column(layout_spelsida, visible = False, key = 'COL2'), sg.Column(layout_vinstsida, visible = False, key = 'COL3'), sg.Column(layout_maxgissningar, visible = False, key = 'COL4'),  sg.Column(layout_highscorelista, visible = False, key = 'COL5')]]
 window = sg.Window('Wordle', layout, size=(800,400))
 
-
 layout = 1
-
-def update_window(layout, window):
-    window[f'COL{layout}'].update(visible = False)
-    layout = layout + 1
-    window[f'COL{layout}'].update(visible = True)
-    return layout
-
-def update_window2(window, layout):
-    window[f'COL{layout}'].update(visible = False)
-    layout = 1
-    window[f'COL{layout}'].update(visible = True)
-    return layout
 
 while True:
     event, values = window.read()
@@ -43,7 +29,9 @@ while True:
 
     if event == 'kör_igen_button' or event == 'kör_igen2_button':
         
-        layout = update_window2(window, layout)
+        window[f'COL{layout}'].update(visible = False)
+        layout = 1
+        window[f'COL{layout}'].update(visible = True)
 
     if event == 'starta_spel_button':
         tidigare_gissningar = []
@@ -52,7 +40,9 @@ while True:
 
         #funktion av window och upppdatering av layout
         
-        layout = update_window(layout, window)
+        window[f'COL{layout}'].update(visible = False)
+        layout = layout + 1
+        window[f'COL{layout}'].update(visible = True)
 
         window['lista'].update('')
         window['lista'].update(visible = True)
