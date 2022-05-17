@@ -1,16 +1,11 @@
-from ast import Dict
-from email.mime import application
+
 import PySimpleGUI as sg
 import SwedishWordle  
 from highscorelista import *
 from layout import *
 
 #listor
-highscore_file_path = 'highscore.json'
 highscore = []
-antal_gissningar = 0
-highscore_gissningar = []
-highscore_ord = []
 
     
 layout = all_layout()
@@ -35,11 +30,8 @@ def update_window(layout, window, n):
         window[f'COL{layout}'].update(visible = False)
         layout= layout + 4
         window[f'COL{layout}'].update(visible = True)
-    
 
     return layout
-
-
 
 while True:
     event, values = window.read()
@@ -70,18 +62,17 @@ while True:
     if event == 'tillbaka_button':
         layout = update_window(layout, window, 1)
 
-
     if event == 'highscore_button':
         # laddar highscore
+        highscore_file_path = 'highscore.json'
         highscore = read_highscorelist()
-        highscore.sort(key=lambda x: x["count"])
-        
+        highscore_gissningar = []
+        highscore_ord = []
         for hs in highscore:
             all_ord = ""
             all_ord += hs["word"]
             highscore_ord.append(all_ord)
                 
-
         window['rätt_ord'].update('\n'.join(highscore_ord[0:9]))
 
         for hc in highscore:
@@ -93,7 +84,6 @@ while True:
         window['score'].update(('\n'.join(highscore_gissningar[0:9])))
         layout = update_window(layout, window, 4)
       
-
     if event == 'gissa_button':
         guess = values['gissning']#hämta från inputen
 
@@ -118,12 +108,10 @@ while True:
                 layout = update_window(layout, window, 2)
                 highscore = uppdate_highscorelist(guess, antal_gissningar)
                 
-
         except ValueError:
             felmeddelande = 'Någonting gick fel'
             window['varning'].update(felmeddelande)
 
-    
 window.close()
 
 
