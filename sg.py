@@ -13,11 +13,13 @@ highscore_gissningar = []
 highscore_ord = []
 
 
-sz, fs, tc = design()
-col1, col2, col3, col4, col5 = columner(sz, fs, tc)
+layout_startsida, layout_spelsida, layout_vinstsida, layout_maxgissningar, layout_highscorelista = layout_all()
+    
 
-#layout
-window = layout_all(fs, col1, col2, col3, col4, col5)
+layout = [[sg.Column(layout_startsida, key = 'COL1'), sg.Column(layout_spelsida, visible = False, key = 'COL2'), sg.Column(layout_vinstsida, visible = False, key = 'COL3'), sg.Column(layout_maxgissningar, visible = False, key = 'COL4'),  sg.Column(layout_highscorelista, visible = False, key = 'COL5')]]
+window = sg.Window('Wordle', layout, size=(800,400))
+
+
 layout = 1
 
 def update_window(layout, window):
@@ -69,9 +71,6 @@ while True:
         # laddar highscore
         highscore = read_highscorelist()
         highscore.sort(key=lambda x: x["count"])
-
-    
-
         
         for hs in highscore:
             all_ord = ""
