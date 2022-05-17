@@ -1,11 +1,5 @@
 import PySimpleGUI as sg
 
-def design():
-    sg.theme('Reddit')
-    sz=(20,30) #size
-    fs = 'Frankline 20' #fontsize
-    tc= 'white' #text color
-    return sz,fs,tc
 
 
 def all_layout():
