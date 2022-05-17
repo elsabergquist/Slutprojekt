@@ -1,5 +1,11 @@
 import PySimpleGUI as sg
 
+def design():
+    sg.theme('Reddit')
+    sz=(20,30) #size
+    fs = 'Frankline 20' #fontsize
+    tc= 'white' #text color
+    return sz,fs,tc
 
 
 def all_layout():
@@ -36,19 +42,16 @@ def all_layout():
     sg.Column(col2, element_justification='c'), 
     sg.Column(col3, element_justification= 'c')]
         ]
-
     layout_vinstsida = [
     [sg.Text('Grattis! du vann!', font = 'Franklin 26') ],
     [sg.Text('Vill du spela igen?', font = 'Franklin 26'), 
     sg.Button('Ja!', key ='kör_igen_button', font = 'Franklin 26')],
         ]
-
     layout_maxgissningar = [
     [sg.Text('Du har max 5 gissningar', font = fs)],   
     [sg.Text('Vill du spela igen?', font = 'Franklin 26'), 
     sg.Button('Ja!', key ='kör_igen2_button', font = 'Franklin 26')],
         ]
-
     layout_highscorelista = [
     [sg.Text('Highscore', font = fs), sg.Button('Tillbaka till startsidan', key ='tillbaka_button', font= 'Frankline 20' )],
     [sg.Column(col4, element_justification=('c')), sg.Column(col5, element_justification=('c'))]
