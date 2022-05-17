@@ -8,7 +8,7 @@ def design():
     return sz,fs,tc
 
 
-def layout_all():
+def all_layout():
     sg.theme('Reddit')
     sz=(20,30) #size
     fs = 'Frankline 20' #fontsize
@@ -56,8 +56,9 @@ def layout_all():
     [sg.Text('Highscore', font = fs), sg.Button('Tillbaka till startsidan', key ='tillbaka_button', font= 'Frankline 20' )],
     [sg.Column(col4, element_justification=('c')), sg.Column(col5, element_justification=('c'))]
         ]
-            
-    return layout_startsida,layout_spelsida,layout_vinstsida,layout_maxgissningar,layout_highscorelista
+        
+    layout = [[sg.Column(layout_startsida, key = 'COL1'), sg.Column(layout_spelsida, visible = False, key = 'COL2'), sg.Column(layout_vinstsida, visible = False, key = 'COL3'), sg.Column(layout_maxgissningar, visible = False, key = 'COL4'),  sg.Column(layout_highscorelista, visible = False, key = 'COL5')]]
+    return layout
     
     
    

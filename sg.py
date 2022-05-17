@@ -12,13 +12,11 @@ antal_gissningar = 0
 highscore_gissningar = []
 highscore_ord = []
 
-
-layout_startsida, layout_spelsida, layout_vinstsida, layout_maxgissningar, layout_highscorelista = layout_all()
     
-layout = [[sg.Column(layout_startsida, key = 'COL1'), sg.Column(layout_spelsida, visible = False, key = 'COL2'), sg.Column(layout_vinstsida, visible = False, key = 'COL3'), sg.Column(layout_maxgissningar, visible = False, key = 'COL4'),  sg.Column(layout_highscorelista, visible = False, key = 'COL5')]]
+layout = all_layout()
 window = sg.Window('Wordle', layout, size=(800,400))
-
 layout = 1
+
 
 while True:
     event, values = window.read()
@@ -43,7 +41,6 @@ while True:
         window[f'COL{layout}'].update(visible = False)
         layout = layout + 1
         window[f'COL{layout}'].update(visible = True)
-
         window['lista'].update('')
         window['lista'].update(visible = True)
         window['ord'].update('')
@@ -79,8 +76,6 @@ while True:
             
           
         window['score'].update(('\n'.join(highscore_gissningar[0:9])))
-
-        
 
         layout = 1
         window[f'COL{layout}'].update(visible = False)
