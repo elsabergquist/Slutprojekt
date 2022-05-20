@@ -74,8 +74,7 @@ while True:
             highscore_gissningar.append(str(highest_count))
 
             
-          
-        window['score'].update(('\n'.join(highscore_gissningar[0:9])))
+        window['score'].update('\n'.join(highscore_gissningar[0:9]))
 
         layout = 1
         window[f'COL{layout}'].update(visible = False)
