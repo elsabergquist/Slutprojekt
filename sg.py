@@ -4,10 +4,7 @@ import SwedishWordle
 from highscorelista import *
 from layout import *
 
-#listor
-highscore = []
-
-    
+   
 layout = all_layout()
 window = sg.Window('Wordle', layout, size=(800,400))
 layout = 1
@@ -35,6 +32,8 @@ def update_window(layout, window, n):
 
 while True:
     event, values = window.read()
+
+    highscore = []
 
     # End program if user closes window
     if event == sg.WIN_CLOSED:
