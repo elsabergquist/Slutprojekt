@@ -47,7 +47,6 @@ while True:
         tidigare_gissningar = []
         tidigare_ord = []
         antal_gissningar= 0
-
         #funktion av window och upppdatering av layout
         layout = update_window(layout, window, 2)
 
